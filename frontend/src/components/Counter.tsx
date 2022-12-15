@@ -1,19 +1,14 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components'
 import { Expression, Title } from './Multiplier'
-import axios from '../util/axiosConfig'
+import { useNavigate } from 'react-router-dom'
+
 
 function Counter() {
     const [value, setValue] = useState(0);
+    const navigate = useNavigate();
     useEffect(() => {
-      const setCounterValue = async () => {
-        try {
-          await axios.post('/counter/'+ value)
-        } catch (error) {
-          console.log(error)
-        }
-      }
-      setCounterValue()
+      navigate('/',{state:{counter: value}})
     }, [value])
     
   return (

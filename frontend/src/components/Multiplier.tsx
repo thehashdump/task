@@ -1,31 +1,20 @@
-import axios from '../util/axiosConfig'
-import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
 
 function Multiplier() {
   const value = -5
-  const [value2, setValue2] = useState(0);
-  useEffect(() => {
-    const getCounterValue = ()=>{
-        try {
-            setInterval(async function () {
-                const res = await axios.get('/counter')
-                setValue2(res.data.value)
-            }, 1000);
-            
-        } catch (error) {
-            console.log(error)
-        }
-    }
-    getCounterValue()
-  })
+  const location = useLocation()
   return (
     <>
         <Title>Multiplier Component:</Title>
         <Container>
-            <Expression>{value} * {value2}</Expression>
+            <Expression> 
+                {`${value} * ${location.state?.counter}`}
+            </Expression>
             <Result>
-                <p>{value * value2}</p>
+                <p>
+                    {value*location.state?.counter}
+                </p>
             </Result>
         </Container> 
     </>   
