@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components'
 import { Expression, Title } from './Multiplier'
-import { useNavigate } from 'react-router-dom'
 
 
 function Counter() {
     const [value, setValue] = useState(0);
-    const navigate = useNavigate();
     useEffect(() => {
-      navigate('/',{state:{counter: value}})
+        localStorage.setItem("counter", value.toString());
+        dispatchEvent(new Event("update"));
     }, [value])
     
   return (

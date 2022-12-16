@@ -1,18 +1,21 @@
 import { Container, Expression, Result, Title } from './Multiplier';
-import { useLocation } from "react-router-dom";
+import { useState } from 'react';
 
 function Divider() {
   const value = 6
-  const location = useLocation()
+  const [ counter, setCounter ] = useState(0)
+  window.addEventListener('update', () => {
+    setCounter(Number(localStorage.getItem("counter")))
+  })
   return (
     <>
         <Title>Divider Component:</Title>
         <Container>
             <Expression>
-              {`${value} / ${location.state?.counter}`}
+              {`${value} / ${counter}`}
             </Expression>
             <Result>
-                <p>{(value/location.state?.counter).toFixed(3)}</p>
+                <p>{(value/counter).toFixed(3)}</p>
             </Result>
         </Container> 
     </>    

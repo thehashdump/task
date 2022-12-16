@@ -1,19 +1,22 @@
 import styled from "styled-components";
-import { useLocation } from "react-router-dom";
+import { useState } from "react";
 
 function Multiplier() {
   const value = -5
-  const location = useLocation()
+  const [ counter, setCounter ] = useState(0)
+  window.addEventListener('update', () => {
+    setCounter(Number(localStorage.getItem("counter")))
+    })
   return (
     <>
         <Title>Multiplier Component:</Title>
         <Container>
             <Expression> 
-                {`${value} * ${location.state?.counter}`}
+                {`${value} * ${counter}`}
             </Expression>
             <Result>
                 <p>
-                    {value*location.state?.counter}
+                    {value*counter}
                 </p>
             </Result>
         </Container> 
